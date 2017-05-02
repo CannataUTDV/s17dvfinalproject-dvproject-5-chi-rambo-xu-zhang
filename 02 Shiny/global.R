@@ -9,15 +9,15 @@ online0 = TRUE
 if(online0) {
   globals = query(
     data.world(propsfile = "www/.data.world"),
-    dataset="cannata/superstoreorders", type="sql",
-    query="select Order_Date, Sales
-    from SuperStoreOrders
+    dataset="andyzhang/final-project", type="sql",
+    query="select Year, TotalVictims
+    from MassShooting
     order by 1"
   ) 
+  # View(globals)
 } else {
-  file_path = "www/SuperStoreOrders.csv"
+  file_path = "www/MassShooting.csv"
   df <- readr::read_csv(file_path) 
-  globals <- df %>% dplyr::select(Order_Date, Sales) %>% dplyr::distinct()
+  globals <- df %>% dplyr::select(Year, TotalVictims) %>% dplyr::distinct()
 }
-globals$Order_Date <- lubridate::year(globals$Order_Date)
 

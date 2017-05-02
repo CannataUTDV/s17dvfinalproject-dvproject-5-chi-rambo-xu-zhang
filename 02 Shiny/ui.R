@@ -30,21 +30,15 @@ dashboardPage(
                          radioButtons("rb5", "Get data from:",
                                       c("SQL" = "SQL",
                                         "CSV" = "CSV"), inline=T),
-                         uiOutput("boxplotRegions"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html,
+                         uiOutput("BoxplotLocations"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html,
                          actionButton(inputId = "click5",  label = "To get data, click here"),
                          hr(), # Add space after button.
                          DT::dataTableOutput("boxplotData1")
                 ),
-                tabPanel("Simple Box Plot", 
-                         sliderInput("boxSalesRange1", "Sales Range:", # See https://shiny.rstudio.com/articles/sliders.html
-                                     min = min(globals$Sales), max = max(globals$Sales), 
-                                     value = c(min(globals$Sales), max(globals$Sales))),
-                         sliderInput("range5a", "Loop through Quarters:", 
-                                     min(globals$Order_Date), 
-                                     max(globals$Order_Date) + .75, 
-                                     max(globals$Order_Date), 
-                                     step = 0.25,
-                                     animate=animationOptions(interval=2000, loop=T)),
+                tabPanel("Box Plot", 
+                         sliderInput("boxTotalVictimsRange1", "Total Victims Range:", # See https://shiny.rstudio.com/articles/sliders.html
+                                     min = min(globals$TotalVictims), max = max(globals$TotalVictims), 
+                                     value = c(min(globals$TotalVictims), max(globals$TotalVictims))),
                          plotlyOutput("boxplotPlot1", height=500))
               )
       ),
@@ -60,7 +54,7 @@ dashboardPage(
                          hr(), # Add space after button.
                          DT::dataTableOutput("histogramData1")
                 ),
-                tabPanel("Simple Histogram", plotlyOutput("histogramPlot1", height=1000))
+                tabPanel("Histogram", plotlyOutput("histogramPlot1", height=1000))
               )
       ),
       # End Histograms tab content.
@@ -76,7 +70,7 @@ dashboardPage(
                          hr(), # Add space after button.
                          DT::dataTableOutput("scatterData1")
                 ),
-                tabPanel("Simple Scatter Plot", plotlyOutput("scatterPlot1", height=1000))
+                tabPanel("Scatter Plot", plotlyOutput("scatterPlot1", height=1000))
               )
       ),
       # End Scatter Plots tab content.
@@ -87,10 +81,10 @@ dashboardPage(
               radioButtons("rb1", "Get data from:",
                 c("SQL" = "SQL",
                   "CSV" = "CSV"), inline=T),
-              sliderInput("KPI1", "KPI_Low:", 
-                          min = 0, max = .1,  value = .1),
-              sliderInput("KPI2", "KPI_Medium:", 
-                          min = .1, max = .2,  value = .2),
+              sliderInput("KPI1", "FatalRate_Low:", 
+                          min = 0, max = .5,  value = .5),
+              sliderInput("KPI2", "FatalRate_Medium:", 
+                          min = .5, max = .7,  value = .7),
               actionButton(inputId = "click1",  label = "To get data, click here"),
               hr(), # Add space after button.
               DT::dataTableOutput("data1")
@@ -106,7 +100,7 @@ dashboardPage(
              radioButtons("rb2", "Get data from:",
                           c("SQL" = "SQL",
                             "CSV" = "CSV"), inline=T),
-             uiOutput("regions2"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html
+             uiOutput("locations2"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html
              actionButton(inputId = "click2",  label = "To get data, click here"),
              hr(), # Add space after button.
              'Here is data for the "Barchart with Table Calculation" tab',
