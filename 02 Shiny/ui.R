@@ -107,11 +107,11 @@ dashboardPage(
              hr(),
              DT::dataTableOutput("barchartData1"),
              hr(),
-             'Here is data for the "High Discount Orders" tab',
+             'Here is data for the "High Fatality Cases tab data',
              hr(),
              DT::dataTableOutput("barchartData2"),
              hr(),
-             'Here is data for the "High Sales Customers" tab',
+             'Here is data for the "High Total Victims Case tab data',
              hr(),
              DT::dataTableOutput("barchartData3")
           ),

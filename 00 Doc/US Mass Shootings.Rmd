@@ -1,19 +1,19 @@
 ---
-title: "<center><b>Poverty Rate in California</b></center>"
+title: "<center><b>US Mass Shootings Analysis and Visualizations</b></center>"
 author: "<center><b>Derry Xu, Jackie Rambo, Stanley Chi, Zihao Zhang</b></center>"
 output:
   html_notebook:
     toc: yes
     depth: 2
 ---
-<center>![](pov.jpg)</center>
+<center>![](usflag.png)</center>
 
 #**Introduction**
 
 For Project 5, we clean two datasets in RStudio with regular expression and loops, using the ***US County Demographics*** and ***Poverty Rate*** datasets that are downloaded from data.world/asheville and data.world/health. Using shiny app from RStudio and Tableau, we visualize the relations between counties in California, race, and poverty.
 
-###The Project Notebook is [here](Notebook.nb.html). 
-###GitHub repository is [here](https://github.com/CannataUTDV/s17dvproject6-dvproject-5-chi-rambo-xu-zhang-1).
+###The Project Notebook is [here](US Mass Shootings.nb.html). 
+###GitHub repository is [here](https://github.com/CannataUTDV/s17dvfinalproject-dvproject-5-chi-rambo-xu-zhang).
 
 #**R Configuration**
 Below we display our sessionInfo.
@@ -26,26 +26,30 @@ sessionInfo(package=NULL)
 
 ###**Accessing raw dataset from the _data.world_**
 
-From these urls: https://data.world/health/poverty-rate-california-region, https://data.world/asheville/5y-demographic-data-2013-by-co, we download our raw datasets and access them by queries through _data.world_ server.
+From these urls: _US Mass Shootings_ https://data.world/awram/us-mass-shootings, _US State Table_ https://data.world/markmarkoh/us-state-table, _DHS City Location Example_ https://data.world/bryon/dhs-city-location-example, we download our raw datasets and access them by queries through _data.world_ server.
 
 ###**Download cleaned dataset from _data.world_**
 
-From this url:  https://data.world/andyzhang/s-17-dv-project-6, people are able to access to a private data under the user name _andyzhang_. Corresponding to the dataset description, there are two cleaned files there called ETLLL and ETLPR.
+From this url: https://data.world/andyzhang/final-project, invited persons are able to access to a private data under the user name _andyzhang_. Corresponding to the dataset description, there are two cleaned files there called MassShooting, StateAbbrev and LatLong.
 
 #**Data Cleaning**
 
 ```{r}
-source("../01 Data/ETL FA&PR.R")
+source("../01 Data/ETL.R")
 ```
 
 ###**A Summary of Dataset**
 
 ```{r}
-print(summary(LL))
+print(summary(MassShooting))
 ```
 
 ```{r}
-print(summary(PR))
+print(summary(StateAbbrev))
+```
+
+```{r}
+print(summary(LatLong))
 ```
 
 This is a summary of all the dimensions and measures of our county demographics and poverty data. A sample of 7 entries are shown for each column.
@@ -53,32 +57,36 @@ This is a summary of all the dimensions and measures of our county demographics 
 ###**The Dimensions of Dataset**
 
 ```{r}
-print(head(LL[LLdimensions]))
+print(head(MassShooting[MSdimensions]))
 ```
 
 ```{r}
-print(head(PR[PRdimensions]))
+print(head(StateAbbrev[SAdimensions]))
 ```
 
-Dimensions are typically items that are non-numerical attributes. In this case, our dimensions consist of: **County Name**, **Race** , and **Region**.
+```{r}
+print(head(LatLong[LLdimensions]))
+```
+
+Dimensions are typically items that are non-numerical attributes. In this case, our dimensions consist of: **Case**, **Gender** , **Race**, **City**, **State**, **Location Type**, **Mental Illness**, **Legal Weapon**, and **Abbreviation**.
 
 ###**The Measures of Dataset**
 
 ```{r}
-print(head(LL[LLmeasures]))
+print(head(MassShooting[MSmeasures]))
 ```
 
 ```{r}
-print(head(PR[PRmeasures]))
+print(head(LatLong[LLmeasures]))
 ```
 
-Measures are typically items that are quantified numerically (i.e. ints or doubles). In this case, our measures consist of: **Latitude**, **Longitude**, **CountyID**, **RaceCode**,**Poverty population**, and **Total population**.
+Measures are typically items that are quantified numerically (i.e. ints or doubles). In this case, our measures consist of: **Year**, **Fatalities**, **Wounded**, **Total Victims**,**Number of Weapons**, **Latitude**, and **Longitude**.
 
 #**Shiny**
 ###**Shiny Website**
 <iframe src="https://andyzihaozhang.shinyapps.io/project6/" style="border: none; width: 900px; height: 900px"></iframe>
 
-This shows an example of how data points can be selected using the Shiny app and then depicted in a new underlying plot. Using SQL and ggplot, we made crosstabs in Shiny that produce the same visualizations as the Tableau visualizations below.
+This shows an example of how data points can be selected using the Shiny app and then depicted in a new underlying plot. Using SQL and ggplot, we made boxplots, histograms, scatter plots, crosstabs, and barcharts in Shiny that produce the same visualizations as the Tableau visualizations below.
 
 #**Visualization**
 Below we display our four visualizations of the dataset.

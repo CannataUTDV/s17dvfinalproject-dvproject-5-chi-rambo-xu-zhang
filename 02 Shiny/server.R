@@ -34,7 +34,7 @@ location_list <- as.list(locations$D, locations$L)
 location_list <- append(list("All" = "All"), location_list)
 location_list5 <- location_list
 
-# The following queries are for the Barcharts -> High Discount Orders tab data.
+# The following queries are for the Barcharts -> High Fatality Cases tab data.
 if(online0) {
 # Step 1:
   highFatalities <- query(
@@ -101,7 +101,7 @@ if(online0) {
     # View(fatalities)
 }
 
-# The following query is for the Barcharts -> High Sales Customers tab data.
+# The following query is for the Barcharts -> High Total Victims Case tab data.
 if(online0) {
   # Step 1:
   highFatalities <- query(
@@ -244,7 +244,7 @@ shinyServer(function(input, output) {
       query(
         data.world(propsfile = "www/.data.world"),
         dataset="andyzhang/final-project", type="sql",
-        query="select Fatalities, NumWeapons, State
+        query="select Fatalities, NumWeapons, State, LocationType
         from MassShooting"
       )
     }
@@ -252,7 +252,7 @@ shinyServer(function(input, output) {
       print("Getting from csv")
       file_path = "www/MassShooting.csv"
       df <- readr::read_csv(file_path)
-      df %>% dplyr::select(Fatalities, NumWeapons, State)
+      df %>% dplyr::select(Fatalities, NumWeapons, State, LocationType)
     }
   })
   output$scatterData1 <- renderDataTable({DT::datatable(dfsc1(), rownames = FALSE,
@@ -263,7 +263,7 @@ shinyServer(function(input, output) {
   output$scatterPlot1 <- renderPlotly({p <- ggplot(dfsc1()) + 
       theme(axis.text.x=element_text(angle=90, size=16, vjust=0.5)) + 
       theme(axis.text.y=element_text(size=16, hjust=0.5)) +
-      geom_point(aes(x=Fatalities, y=NumWeapons, colour=State), size=2)
+      geom_point(aes(x=Fatalities, y=NumWeapons, colour=LocationType), size=2)
       ggplotly(p)
   })
   # End Scatter Plots Tab ___________________________________________________________
@@ -333,6 +333,7 @@ shinyServer(function(input, output) {
                 group by Race, LocationType",
         queryParameters = location_list
       )
+      # View(tdf)
     }
     else {
       print("Getting from csv")
@@ -344,6 +345,7 @@ shinyServer(function(input, output) {
     }
     # The following two lines mimic what can be done with Analytic SQL. Analytic SQL does not currently work in data.world.
     tdf2 = tdf %>% group_by(Race) %>% summarize(windowAvgTotalVictims = mean(sumTotalVictims))
+    # View(tdf2)
     dplyr::inner_join(tdf, tdf2, by = "Race")
   })
 
@@ -385,14 +387,14 @@ shinyServer(function(input, output) {
           ", ", fatalities$City,
           ", ", fatalities$State,
           " Fatalities: ", fatalities$sumFatalities,
-          " Total Victims: ", fatalities$sumTotalVictims)) )
+          " Number of Weapons: ", fatalities$sumNumWeapons)) )
   })
   
   output$barchartPlot2 <- renderPlotly({
     # The following ggplotly code doesn't work when sumProfit is negative.
     p <- ggplot(totalVictims, aes(x=Case, y=sumTotalVictims)) +
-      theme(axis.text.x=element_text(angle=0, size=12, vjust=0.5)) + 
-      theme(axis.text.y=element_text(size=12, hjust=0.5)) +
+      theme(axis.text.x=element_text(angle=90, size=8, vjust=0.5)) + 
+      theme(axis.text.y=element_text(size=8, hjust=0.5)) +
       geom_bar(stat = "identity")
     ggplotly(p)
   # End Barchart Tab ___________________________________________________________
