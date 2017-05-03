@@ -10,7 +10,11 @@ output:
 
 #**Introduction**
 
+<<<<<<< HEAD
 For Final Project, we clean three datasets in RStudio with regular expression and loops, using the ***US Mass Shootings***, ***US States*** and ***DHS City Location Example*** datasets that are downloaded from data.world/awram, data.world/markmarkoh and data.world/bryon, respectively. Using shiny app from RStudio and the Tableau software, we visualize the relations between mass shootings in the US, race of the shooters, numbers of fatalities and victims, and the location types.
+=======
+For our Final Project, we cleaned three datasets in RStudio with regular expression and loops, using the ***US Mass Shootings***, ***US States*** and ***DHS City Location Example*** datasets that are downloaded from data.world/awram, data.world/markmarkoh and data.world/bryon, respectively. Using shiny app from RStudio and the Tableau software, we visualize the relations between mass shootings in the US, race of the shooters, numbers of fatalities and victims, and the location types. In the Mass Shootings dataset, mass shootings are defined by events with more than four victims, excluding robbery and gang violence incidents, from 1982 to 2015.
+>>>>>>> bd28adf6c61d6dd49d55bc392109443df25dceb6
 
 
 
@@ -87,39 +91,60 @@ Measures are typically items that are quantified numerically (i.e. ints or doubl
 
 This shows that datasets were accessed and queried using the Shiny app and then tranformed into different interesting visualizations. Using datatable, ggplot, leaflet and other packages, we made boxplots, histograms, scatter plots, crosstabs, and barcharts in Shiny that produce the same visualizations as the Tableau visualizations below.
 
+<<<<<<< HEAD
 #**Visualization**
 Below we display and explain our visualizations of the dataset.
+=======
+#**Visualizations**
+Below we display our visualizations of the dataset.
+>>>>>>> bd28adf6c61d6dd49d55bc392109443df25dceb6
 
-###**Visualization 1**
-
+###**Visualization 1: Boxplot**
+The following is a boxplot of total victims on the y-axis and races on the x-axis. The races are categorized by Asian, Black, Latino, Native American, Other (Multiracial), and White. The total victims are identified by a count.
 <center>![](boxplot.png)</center>
 
-The following is a bar chart of certain races in counties versus the poverty rate (as a percentage). The races are African American, AIAN (American Indian and Alaskan Native), Asian, Latino, Multiple, NHOPI (Native Hawaiians and Other Pacific Islanders), “Other”, and White. There races are individually measured for their poverty rate in each county (some race poverty data is not available for certain counties). The poverty rate is a calculated percentage from the total population and the impoverished population. The reference line for each county set represents the window average (or just average for that county). Each bar is also color-coded on a poverty rate gradient to help visually distinguish between different values. From this visualization, we have realized some interesting observations, such as huge differences in poverty rates based on race in places such as Amador or Colusa.
+####**Interesting observation(s)**
+One interesting observation seen from this visualization is the significantly high number of data points in the White column. Total victims in this column also appear to be higher relative to other races, contrary to some current public assumptions (i.e. "black on black violence", "middle-eastern terrorists, etc.)
 
-###**Visualization 2**
 
+###**Visualization 2: Histogram**
+
+The following is a histogram of the number of legal weapons carried (x axis) versus the count of instances a shooting occured with the # of weapons. This histogram is filtered by cases of prior mental illnesses (true) and the legality of the weapons (true).
 <center>![](histogram.png)</center>
 
-Poverty Rate by County
-X = County, Y= Poverty Rate
+####**Interesting observation(s)**
+One interesting observation from this visualization is the shocking number of people being approved for firearms while having a prior mental illness. This may provide further interpretation on our current gun laws.
 
-This is a bar graph showing the poverty ratio in every county in California. This visualization distinguishes counties with high/low poverty rates from the rest. Fresno appears to have the highest poverty rate while Placer has the lowest. This bar graph is also useful in creating sets separating counties with high poverty rates from others by highlighting across all counties within the desired range of poverty rate.
+###**Visualization 3: Scatterplot**
 
-###**Visualization 3**
+
+The following is a scatterplot of the number of fatalities per incident (x axis) versus the number of weapons (y axis, legality does not matter), colored by the type of location the shooting occured (military, other, religious, school, workplace).
 <center>![](scatterplot.png)</center>
 
-These three maps depict concentrations of populations based on race. The first 
-map represents counties containing the populations with the highest povety levels.
-The second corresponds to the counties with populations with medium poverty levels, and the third represents counties with populations with low levels of poverty. As shown, high poverty levels are distributed down the middle of California, running north to south, and low levels are concentrated in the middle running east to west. Medium poverty levels are distributed throughout, but with more being concentrated in the upper half section of California.
+####**Interesting observation(s)**
+One interesting observation of this visualization is the alarming fact of the data located around the top left corner (high number of weapons, low fatalities). Even though the fatality count was low, further observations could be made on how these data points are mainly school and workplace areas, which brings concern to how these weapons entered these premises (in such quantities).
 
-###**Visualization 4**
+
+###**Visualization 4: Crosstabs**
+The following is a crosstab of the location of the shooting (x axis) versus the state of the shooting (y axis), categorized by "Fatal Rate 2" colors (Blue/Low = 0-0.5,Green/Medium = 0.5-0.7, Red/High = >0.7). The "Fatal Rate 2" categories are further defined by "Fatal rate", which is essentially SUM([Fatalities])/SUM([TotalVictims]).
 <center>![](Crosstabs.png)</center>
 
-###**Visualization 5**
+####**Interesting observation(s)**
+One interesting observation of this visualization is the fact that a relatively large amount of shootings (of all categories) are occuring in the workplace and the school areas. This could lead to the observation that more people "snap" in these areas(which suggests for more mental health counseling services), or possibly these places are "popular" areas to start violent incidents (which suggests for more security).
+
+###**Visualization 5: Barcharts**
+The following is barcharts of number of victims by race and location type (categorized under race). Average lines for each race are present to compare each location type to the average within each window and also to compare the averages among races.
 <center>![](Barcharts.png)</center>
 
-###**Visualization 6**
-<center>![](Map.png)</center>
+####**Interesting observation(s)**
+One interesting observation is how one incident can skew the averages due to low sample size. For example, the Virginia Tech massacre with 56 total victims is primarily responsible for the high average among the Asian group.
+
+###**Visualization 6: Map**
+The following is a map of the mass shooting cases that occurred during the years when total fatalities exceeded 35. Only four years met the condition within this timeframe, 1999, 2007, 2009, and 2012. The size of the data points reflect the number of fatalities in each case.
+<center>![](hawaii.png)![](48states.png)![](popdens.gif)</center>
+
+####**Interesting observation(s)**
+An interesting observation is how common mass shootings occur in or near densely populated areas, when comparing the visualization we created to a chloropleth map of population density above.
 
 #**Instructions on Creating the Visualizations on Tableau**
 ###**Boxplot**
