@@ -212,8 +212,7 @@ shinyServer(function(input, output) {
         data.world(propsfile = "www/.data.world"),
         dataset="andyzhang/final-project", type="sql",
         query="select NumWeapons, MentalIllness, LegalWeapon
-        from MassShooting
-        where MentalIllness = 'true' and LegalWeapon = 'true'"
+        from MassShooting"
       )
     }
     else {
@@ -231,9 +230,14 @@ shinyServer(function(input, output) {
   })
   
   output$histogramPlot1 <- renderPlotly({p <- ggplot(dfh1()) +
-      geom_histogram(aes(x=NumWeapons)) +
-      theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5))
-      ggplotly(p)
+    geom_histogram(aes(x=NumWeapons), binwidth = 0.5) +
+    theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5)) +
+    xlab("Number of weapons carried") + ylab("Count of cases") +
+    labs(title = "The count of number of weapons carried by shooters by cases",
+         subtitle = "The vertical variable is whether the shooters had prior sign of mental illness while the horizontal variable is whether the shooters are leagally carrying the weapons. These two variables together plot 4 graphs.") +
+    facet_grid(MentalIllness ~ LegalWeapon) +
+    scale_x_continuous(breaks = seq(0,7,1))
+    ggplotly(p)
   })
   # End Histogram Tab ___________________________________________________________
   
@@ -281,9 +285,9 @@ shinyServer(function(input, output) {
             sum(Fatalities) / sum(TotalVictims) as FatalRate,
             
             case
-            when sum(Fatalities) / sum(TotalVictims) < ? then 'Low Fatal Rate'
-            when sum(Fatalities) / sum(TotalVictims) < ? then 'Medium Fatal Rate'
-            else 'High Fatal Rate'
+            when sum(Fatalities) / sum(TotalVictims) < ? then '03 Low Fatal Rate'
+            when sum(Fatalities) / sum(TotalVictims) < ? then '02 Medium Fatal Rate'
+            else '01 High Fatal Rate'
             end AS KPI
             
             from MassShooting
@@ -302,8 +306,8 @@ shinyServer(function(input, output) {
           dplyr::group_by(LocationType, State) %>% 
           dplyr::summarize(sumFatalities = sum(Fatalities), sumTotalVictims = sum(TotalVictims),
                            FatalRate = sum(Fatalities) / sum(TotalVictims),
-                           KPI = if_else(FatalRate <= FatalRate_Low(), '03 Low',
-                           if_else(FatalRate <= FatalRate_Medium(), '02 Medium', '01 High')))
+                           KPI = if_else(FatalRate <= FatalRate_Low(), '03 Low Fatal Rate',
+                           if_else(FatalRate <= FatalRate_Medium(), '02 Medium Fatal Rate', '01 High Fatal Rate')))
       }
   })
   output$data1 <- renderDataTable({DT::datatable(dfct1(), rownames = FALSE,
