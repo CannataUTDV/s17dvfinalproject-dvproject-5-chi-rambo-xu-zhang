@@ -6,14 +6,13 @@ output:
     toc: yes
     depth: 2
 ---
-<center>![](usflag.png)</center>
+<center>![](memorial.jpg)</center>
 
 #**Introduction**
 
-For Project 5, we clean two datasets in RStudio with regular expression and loops, using the ***US County Demographics*** and ***Poverty Rate*** datasets that are downloaded from data.world/asheville and data.world/health. Using shiny app from RStudio and Tableau, we visualize the relations between counties in California, race, and poverty.
+For Project 5, we clean three datasets in RStudio with regular expression and loops, using the ***US Mass Shootings***, ***US States*** and ***DHS City Location Example*** datasets that are downloaded from data.world/awram, data.world/markmarkoh and data.world/bryon, respectively. Using shiny app from RStudio and the Tableau software, we visualize the relations between mass shootings in the US, race of the shooters, numbers of fatalities and victims, and the location types.
 
-###The Project Notebook is [here](US Mass Shootings.nb.html). 
-###GitHub repository is [here](https://github.com/CannataUTDV/s17dvfinalproject-dvproject-5-chi-rambo-xu-zhang).
+
 
 #**R Configuration**
 Below we display our sessionInfo.
@@ -89,17 +88,17 @@ Measures are typically items that are quantified numerically (i.e. ints or doubl
 This shows an example of how data points can be selected using the Shiny app and then depicted in a new underlying plot. Using SQL and ggplot, we made boxplots, histograms, scatter plots, crosstabs, and barcharts in Shiny that produce the same visualizations as the Tableau visualizations below.
 
 #**Visualization**
-Below we display our four visualizations of the dataset.
+Below we display our visualizations of the dataset.
 
 ###**Visualization 1**
 
-<center>![](barcharts.png)</center>
+<center>![](boxplot.png)</center>
 
 The following is a bar chart of certain races in counties versus the poverty rate (as a percentage). The races are African American, AIAN (American Indian and Alaskan Native), Asian, Latino, Multiple, NHOPI (Native Hawaiians and Other Pacific Islanders), “Other”, and White. There races are individually measured for their poverty rate in each county (some race poverty data is not available for certain counties). The poverty rate is a calculated percentage from the total population and the impoverished population. The reference line for each county set represents the window average (or just average for that county). Each bar is also color-coded on a poverty rate gradient to help visually distinguish between different values. From this visualization, we have realized some interesting observations, such as huge differences in poverty rates based on race in places such as Amador or Colusa.
 
 ###**Visualization 2**
 
-<center>![](idsets.png)</center>
+<center>![](histogram.png)</center>
 
 Poverty Rate by County
 X = County, Y= Poverty Rate
@@ -107,23 +106,52 @@ X = County, Y= Poverty Rate
 This is a bar graph showing the poverty ratio in every county in California. This visualization distinguishes counties with high/low poverty rates from the rest. Fresno appears to have the highest poverty rate while Placer has the lowest. This bar graph is also useful in creating sets separating counties with high poverty rates from others by highlighting across all counties within the desired range of poverty rate.
 
 ###**Visualization 3**
-<center>![](highpov.png)</center>
-<center>![](medpov.png)</center>
-<center>![](lowpov.png)</center>
+<center>![](scatterplot.png)</center>
 
 These three maps depict concentrations of populations based on race. The first 
 map represents counties containing the populations with the highest povety levels.
 The second corresponds to the counties with populations with medium poverty levels, and the third represents counties with populations with low levels of poverty. As shown, high poverty levels are distributed down the middle of California, running north to south, and low levels are concentrated in the middle running east to west. Medium poverty levels are distributed throughout, but with more being concentrated in the upper half section of California.
 
-#**Instructions on Creating the Visualizations**
+###**Visualization 4**
+<center>![](Crosstabs.png)</center>
+
+###**Visualization 5**
+<center>![](Barcharts.png)</center>
+
+###**Visualization 6**
+<center>![](Map.png)</center>
+
+#**Instructions on Creating the Visualizations on Tableau**
+###**Boxplot**
+To create this visualization, we dragged *Race* to Columns and *TotalVictims* to Rows. If *sum(TotalVictims)* is in Rows, turn off Aggregate Measures by clicking on Analysis and uncheck Aggregate Measures.
+
+<center>![vis1](how2box.png)</center>
+
+###**Histogram**
+The histogram below was created by first generating bins by right-clicking *NumWeapons* -> Create -> Bins. Set the bin width to 1. Drag the newly created bins to Columns. Drag *NumWeapons* to Rows. Right-click *NumWeapons* -> Measure -> Count. We filtered by dragging *MentalIllness* and *LegalWeapon* to Filters and selecting True for both.
+<center>![vis2](how2hist.png)</center>
+
+###**Scatterplot**
+The scatterplot was made by dragging *Fatalities* to Columns and *NumWeapons* to Rows. *LocationType* is dragged to Color to fill each circle with color of the corresponding location type.
+<center>![vis3](how2scat.png)</center>
+
+###**Crosstabs**
+The crosstabs were made by dragging *LocationType* to Columns and *State* to Rows. *TotalVictims* was dragged to Text. We colored the text with a calculated field, *Fatal Rate*. The image below shows the calculation. 
+<center>![calc](fatalcalc.png)</center>
+In order to group the fatal rates into low, medium, and high categories, we created parameters such as the one below. Low ranged from 0 to 0.5. Medium ranged from 0.5 to 0.7. and High ranged from 0.7 to 1.
+<center>![param](fatalparam.png)</center>
+A new field, *Fatal Rate 2* was created to assign each fatal rate to a qualitative measure rather than quantitative. The calculation is shown below.
+<center>![calc2](fatalcalc2.png)</center>
+*Fatal Rate 2* is dragged to Color. We also filtered out the Other type by dragging *LocationType* to Filters and deselecting Other.
+<center>![vis4](how2x.png)</center>
+
 ###**Barcharts**
-1. To create this visualization, we first created a new field, "Povert Rate" by dividing the "PovertyPop" by "TotalPop". This field was also formatted as a percentage. The barcharts were made by dragging "County" and "Race" to Rows (with "County" before "Race") and "Poverty Rate" to Columns. A new calculated field, "Diff from Avg" was created to show the difference between the poverty rate of each race from the average poverty rate among all races of the respective county. The bars were colored and labeled by this field. Finally, reference lines of the average poverty rate of each county were added and labeled.
-<center>![vis1](barcharts.png)</center>
+The barcharts were made by dragging *TotalVictims* to Columns, and *Race* and *LocationType* to Rows. Average lines were inserted by clicking on the Analytics Tab and double clicking on Average Line.
+<center>![vis5](how2bar.png)</center>
 
-###**ID Sets**
-2. The bar graph below was made by dragging "County" to Columns and "Poverty Rate" to Rows. The labels on the x-axis were rotated for clearer display of county names. ID sets were made in this graph by highlighting those within the desired poverty ranges. For "high poverty rates"", counties with poverty rates of 20% and above were selected. For medium, 10% to 20% were selected. While the rest belong to the "low poverty rates" set. These sets are used to make pages for the final visualization.
-<center>![vis2](idsets.png)</center>
+###**Map**
+This map was made by converting *Latitude* and *Longitude* to geographic types by right-clicking them -> Geographic Role -> Latitude (Longitude), then dragging them to Rows and Columns, respectively. We filtered out years when the number of fatalities totaled less than 35, by dragging Year to Filters and selecting 1999, 2007, 2009, and 2012. To add information to the data points, we dragged *City*, *State*, and *Case* to Detail. We varied the sizes of each point by dragging *Fatalities* to Size.
+<center>![vis6](how2map.png)</center>
 
-###**ID Sets on a Map**
-3. The map below was made with the longitude and latitude data provided by the County Demographic dataset. By dragging the three sets made from the bar graph to Pages, the geographic locations of counties in each of the sets can be identified on the map. To provide more information when the cursor is hovered over the points, TotalPop and PovertyPop were dragged to Detail.
-<center>![vis3](highpov.png)</center>
+
+
