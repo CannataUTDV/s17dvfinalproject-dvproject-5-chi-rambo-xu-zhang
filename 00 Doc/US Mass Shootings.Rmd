@@ -32,7 +32,7 @@ From this url: https://data.world/andyzhang/final-project, invited persons are a
 #**Data Cleaning**
 
 ```{r}
-source("../01 Data/ETL.R")
+readLines("../01 Data/ETL.R")
 ```
 
 ###**A Summary of Dataset**
