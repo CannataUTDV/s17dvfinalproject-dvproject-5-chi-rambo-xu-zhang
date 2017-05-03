@@ -90,15 +90,24 @@ Below we display and explain our visualizations of the dataset.
 
 ###**Visualization 1: Boxplot**
 The following is a boxplot of total victims on the y-axis and races on the x-axis. The races are categorized by Asian, Black, Latino, Native American, Other (Multiracial), and White. The total victims are identified by a count.
+
+<center>**Shiny Visualization**</center>
+<center>![](ShinyBoxplot.png)</center>
+
+<center>**Tableau Visualization**</center>
 <center>![](boxplot.png)</center>
 
 ####**Interesting observation(s)**
 One interesting observation seen from this visualization is the significantly high number of data points in the White column. Total victims in this column also appear to be higher relative to other races, contrary to some current public assumptions (i.e. "black on black violence", "middle-eastern terrorists, etc.)
 
-
 ###**Visualization 2: Histogram**
 
 The following is a histogram of the number of legal weapons carried (x axis) versus the count of instances a shooting occured with the # of weapons. This histogram is filtered by cases of prior mental illnesses (true) and the legality of the weapons (true).
+
+<center>**Shiny Visualization**</center>
+<center>![](ShinyHistogram.png)</center>
+
+<center>**Tableau Visualization**</center>
 <center>![](histogram.png)</center>
 
 ####**Interesting observation(s)**
@@ -106,8 +115,12 @@ One interesting observation from this visualization is the shocking number of pe
 
 ###**Visualization 3: Scatterplot**
 
-
 The following is a scatterplot of the number of fatalities per incident (x axis) versus the number of weapons (y axis, legality does not matter), colored by the type of location the shooting occured (military, other, religious, school, workplace).
+
+<center>**Shiny Visualization**</center>
+<center>![](ShinyScatterplot.png)</center>
+
+<center>**Tableau Visualization**</center>
 <center>![](scatterplot.png)</center>
 
 ####**Interesting observation(s)**
@@ -116,6 +129,11 @@ One interesting observation of this visualization is the alarming fact of the da
 
 ###**Visualization 4: Crosstabs**
 The following is a crosstab of the location of the shooting (x axis) versus the state of the shooting (y axis), categorized by "Fatal Rate 2" colors (Blue/Low = 0-0.5,Green/Medium = 0.5-0.7, Red/High = >0.7). The "Fatal Rate 2" categories are further defined by "Fatal rate", which is essentially SUM([Fatalities])/SUM([TotalVictims]).
+
+<center>**Shiny Visualization**</center>
+<center>![](ShinyCrosstab.png)</center>
+
+<center>**Tableau Visualization**</center>
 <center>![](Crosstabs.png)</center>
 
 ####**Interesting observation(s)**
@@ -123,6 +141,11 @@ One interesting observation of this visualization is the fact that a relatively 
 
 ###**Visualization 5: Barcharts**
 The following is barcharts of number of victims by race and location type (categorized under race). Average lines for each race are present to compare each location type to the average within each window and also to compare the averages among races.
+
+<center>**Shiny Visualization**</center>
+<center>![](ShinyBarchart.png)</center>
+
+<center>**Tableau Visualization**</center>
 <center>![](Barcharts.png)</center>
 
 ####**Interesting observation(s)**
@@ -130,7 +153,15 @@ One interesting observation is how one incident can skew the averages due to low
 
 ###**Visualization 6: Map**
 The following is a map of the mass shooting cases that occurred during the years when total fatalities exceeded 35. Only four years met the condition within this timeframe, 1999, 2007, 2009, and 2012. The size of the data points reflect the number of fatalities in each case.
-<center>![](hawaii.png)![](48states.png)![](popdens.gif)</center>
+
+<center>**Map Visualization (United States)**</center>
+<center>![](ShinyMapMain.png)![](48states.png)</center>
+
+<center>**Map Visualization (Hawaii)**</center>
+<center>![](ShinyMapHawaii.png)![](hawaii.png)</center>
+
+<center>**Map Visualization (Reference Map)**</center>
+<center>![](popdens.gif)</center>
 
 ####**Interesting observation(s)**
 An interesting observation is how common mass shootings occur in or near densely populated areas, when comparing the visualization we created to a chloropleth map of population density above.
