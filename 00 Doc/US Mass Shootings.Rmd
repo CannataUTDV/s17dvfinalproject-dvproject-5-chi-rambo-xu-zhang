@@ -10,13 +10,7 @@ output:
 
 #**Introduction**
 
-<<<<<<< HEAD
-For Final Project, we clean three datasets in RStudio with regular expression and loops, using the ***US Mass Shootings***, ***US States*** and ***DHS City Location Example*** datasets that are downloaded from data.world/awram, data.world/markmarkoh and data.world/bryon, respectively. Using shiny app from RStudio and the Tableau software, we visualize the relations between mass shootings in the US, race of the shooters, numbers of fatalities and victims, and the location types.
-=======
 For our Final Project, we cleaned three datasets in RStudio with regular expression and loops, using the ***US Mass Shootings***, ***US States*** and ***DHS City Location Example*** datasets that are downloaded from data.world/awram, data.world/markmarkoh and data.world/bryon, respectively. Using shiny app from RStudio and the Tableau software, we visualize the relations between mass shootings in the US, race of the shooters, numbers of fatalities and victims, and the location types. In the Mass Shootings dataset, mass shootings are defined by events with more than four victims, excluding robbery and gang violence incidents, from 1982 to 2015.
->>>>>>> bd28adf6c61d6dd49d55bc392109443df25dceb6
-
-
 
 #**R Configuration**
 Below we display our sessionInfo.
@@ -91,13 +85,8 @@ Measures are typically items that are quantified numerically (i.e. ints or doubl
 
 This shows that datasets were accessed and queried using the Shiny app and then tranformed into different interesting visualizations. Using datatable, ggplot, leaflet and other packages, we made boxplots, histograms, scatter plots, crosstabs, and barcharts in Shiny that produce the same visualizations as the Tableau visualizations below.
 
-<<<<<<< HEAD
 #**Visualization**
 Below we display and explain our visualizations of the dataset.
-=======
-#**Visualizations**
-Below we display our visualizations of the dataset.
->>>>>>> bd28adf6c61d6dd49d55bc392109443df25dceb6
 
 ###**Visualization 1: Boxplot**
 The following is a boxplot of total victims on the y-axis and races on the x-axis. The races are categorized by Asian, Black, Latino, Native American, Other (Multiracial), and White. The total victims are identified by a count.

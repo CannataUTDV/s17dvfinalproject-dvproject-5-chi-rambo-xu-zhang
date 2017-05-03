@@ -115,9 +115,9 @@ dashboardPage(
              hr(),
              DT::dataTableOutput("barchartData3")
           ),
-          tabPanel("Barchart with Table Calculation", "Black = Sum of Sales per Region, Red = Average Sum of Sales per Category, and  Blue = (Sum of Sales per Region - Average Sum of Sales per Category)", plotOutput("barchartPlot1", height=1500)),
-          tabPanel("High Discount Orders", leafletOutput("barchartMap1"), height=900 ),
-          tabPanel("High Sales Customers", plotlyOutput("barchartPlot2", height=700) )
+          tabPanel("Barchart with Table Calculation", "Black = Sum of Total Victims per Location Type, Red = Average Sum of Total Victims per Race, and  Blue = (Sum of Total Victims per Location Type - Average Sum of Total Victims per Race)", plotOutput("barchartPlot1", height=1500)),
+          tabPanel("High Fatality Cases", leafletOutput("barchartMap1"), height=900 ),
+          tabPanel("High Total Victims Cases", plotlyOutput("barchartPlot2", height=700) )
         )
       )
       # End Barchart tab content.

@@ -101,7 +101,7 @@ if(online0) {
     # View(fatalities)
 }
 
-# The following query is for the Barcharts -> High Total Victims Case tab data.
+# The following query is for the Barcharts -> High Total Victims Cases tab data.
 if(online0) {
   # Step 1:
   highFatalities <- query(
@@ -345,7 +345,7 @@ shinyServer(function(input, output) {
     }
     # The following two lines mimic what can be done with Analytic SQL. Analytic SQL does not currently work in data.world.
     tdf2 = tdf %>% group_by(Race) %>% summarize(windowAvgTotalVictims = mean(sumTotalVictims))
-     View(tdf2)
+    # View(tdf2)
     dplyr::inner_join(tdf, tdf2, by = "Race")
   })
 
@@ -370,7 +370,7 @@ shinyServer(function(input, output) {
       facet_wrap(~Race, ncol=1) + 
       coord_flip() + 
       geom_text(mapping=aes(x=LocationType, y=sumTotalVictims, label=round(sumTotalVictims)),colour="black", hjust=-.5) +
-      geom_text(mapping=aes(x=sumTotalVictims, y=sumTotalVictims, label=round(sumTotalVictims - windowAvgTotalVictims)),colour="blue", hjust=-2) +
+      geom_text(mapping=aes(x=LocationType, y=sumTotalVictims, label=round(sumTotalVictims - windowAvgTotalVictims)),colour="blue", hjust=-4) +
       # Add reference line with a label.
       geom_hline(aes(yintercept = round(windowAvgTotalVictims)), color="red") +
       geom_text(aes( -1, windowAvgTotalVictims, label = windowAvgTotalVictims, vjust = -.5, hjust = -.25), color="red")
