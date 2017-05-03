@@ -345,7 +345,7 @@ shinyServer(function(input, output) {
     }
     # The following two lines mimic what can be done with Analytic SQL. Analytic SQL does not currently work in data.world.
     tdf2 = tdf %>% group_by(Race) %>% summarize(windowAvgTotalVictims = mean(sumTotalVictims))
-    # View(tdf2)
+     View(tdf2)
     dplyr::inner_join(tdf, tdf2, by = "Race")
   })
 
@@ -376,18 +376,17 @@ shinyServer(function(input, output) {
       geom_text(aes( -1, windowAvgTotalVictims, label = windowAvgTotalVictims, vjust = -.5, hjust = -.25), color="red")
   })
   
-  output$barchartMap1 <- renderLeaflet({leaflet(width = 400, height = 800) %>% 
+  output$barchartMap1 <- renderLeaflet({leaflet(data = fatalities) %>% 
     setView(lng = -98.35, lat = 39.5, zoom = 4) %>% 
     addTiles() %>% 
-    addProviderTiles("MapQuestOpen.Aerial") %>%
-    addMarkers(lng = fatalities$Longitude,
-      lat = fatalities$Latitude,
+    addMarkers(lng = ~Longitude, lat = ~Latitude,
       options = markerOptions(draggable = TRUE, riseOnHover = TRUE),
-      popup = as.character(paste(fatalities$Case, 
-          ", ", fatalities$City,
-          ", ", fatalities$State,
-          " Fatalities: ", fatalities$sumFatalities,
-          " Number of Weapons: ", fatalities$sumNumWeapons)) )
+      popup = ~as.character(paste(Case, ", ", 
+                                  City, ", ", 
+                                  State, ", ",
+                                  " Fatalities: ", sumFatalities, ", ",
+                                  " Number of Weapons: ", sumNumWeapons))
+      )
   })
   
   output$barchartPlot2 <- renderPlotly({

@@ -10,7 +10,7 @@ output:
 
 #**Introduction**
 
-For Project 5, we clean three datasets in RStudio with regular expression and loops, using the ***US Mass Shootings***, ***US States*** and ***DHS City Location Example*** datasets that are downloaded from data.world/awram, data.world/markmarkoh and data.world/bryon, respectively. Using shiny app from RStudio and the Tableau software, we visualize the relations between mass shootings in the US, race of the shooters, numbers of fatalities and victims, and the location types.
+For Final Project, we clean three datasets in RStudio with regular expression and loops, using the ***US Mass Shootings***, ***US States*** and ***DHS City Location Example*** datasets that are downloaded from data.world/awram, data.world/markmarkoh and data.world/bryon, respectively. Using shiny app from RStudio and the Tableau software, we visualize the relations between mass shootings in the US, race of the shooters, numbers of fatalities and victims, and the location types.
 
 
 
@@ -83,12 +83,12 @@ Measures are typically items that are quantified numerically (i.e. ints or doubl
 
 #**Shiny**
 ###**Shiny Website**
-<iframe src="https://andyzihaozhang.shinyapps.io/project6/" style="border: none; width: 900px; height: 900px"></iframe>
+<iframe src="https://andyzihaozhang.shinyapps.io/massshooting/" style="border: none; width: 900px; height: 900px"></iframe>
 
-This shows an example of how data points can be selected using the Shiny app and then depicted in a new underlying plot. Using SQL and ggplot, we made boxplots, histograms, scatter plots, crosstabs, and barcharts in Shiny that produce the same visualizations as the Tableau visualizations below.
+This shows that datasets were accessed and queried using the Shiny app and then tranformed into different interesting visualizations. Using datatable, ggplot, leaflet and other packages, we made boxplots, histograms, scatter plots, crosstabs, and barcharts in Shiny that produce the same visualizations as the Tableau visualizations below.
 
 #**Visualization**
-Below we display our visualizations of the dataset.
+Below we display and explain our visualizations of the dataset.
 
 ###**Visualization 1**
 
@@ -152,6 +152,3 @@ The barcharts were made by dragging *TotalVictims* to Columns, and *Race* and *L
 ###**Map**
 This map was made by converting *Latitude* and *Longitude* to geographic types by right-clicking them -> Geographic Role -> Latitude (Longitude), then dragging them to Rows and Columns, respectively. We filtered out years when the number of fatalities totaled less than 35, by dragging Year to Filters and selecting 1999, 2007, 2009, and 2012. To add information to the data points, we dragged *City*, *State*, and *Case* to Detail. We varied the sizes of each point by dragging *Fatalities* to Size.
 <center>![vis6](how2map.png)</center>
-
-
-

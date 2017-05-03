@@ -3,9 +3,9 @@ title: MassShooting
 account: andyzihaozhang
 server: shinyapps.io
 appId: 177290
-bundleId: 812348
+bundleId: 812874
 url: https://andyzihaozhang.shinyapps.io/massshooting/
-when: 1493752200.51862
+when: 1493784736.79176
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: DESCRIPTION|Readme.md|www/.data.world|www/.DS_Store|www/LatLong.csv|www/MassShooting.csv|www/Notebook.nb.html|www/StateAbbrev.csv
+ignoredFiles: www/Notebook.nb.html
